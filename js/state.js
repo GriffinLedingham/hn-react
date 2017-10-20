@@ -1,9 +1,7 @@
 import { Map, fromJS, List } from 'immutable'
 import uniq from 'lodash/uniq'
 import update from 'react-addons-update'
-
-export const CHANGE_STORIES = 'CHANGE_STORIES'
-export const CHANGE_ITEMS   = 'CHANGE_ITEMS'
+import {CHANGE_STORIES, CHANGE_ITEMS} from './actions/stories'
 
 let defaultState = window.localStorage.getItem('state')
 if (defaultState) {
@@ -24,8 +22,7 @@ export default function (state = defaultState, action) {
       newState = state.mergeIn(['stories'], action.stories)
       break
     case CHANGE_ITEMS:
-      alert(1)
-      newState = state.set('items', state.get('items').set(action.id, action.item))
+      newState = state.mergeIn(['items'] ,action.item)
       break
     default:
       change = false

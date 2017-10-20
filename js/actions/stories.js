@@ -1,5 +1,7 @@
-import { CHANGE_STORIES, CHANGE_ITEMS } from '../state'
 import { Map, fromJS, List } from 'immutable'
+
+export const CHANGE_STORIES = 'CHANGE_STORIES'
+export const CHANGE_ITEMS   = 'CHANGE_ITEMS'
 
 export default {
   changeStories (stories) {
@@ -11,10 +13,11 @@ export default {
 
   changeItem (item) {
     item = new Map(item)
+    let newMap = {}
+    newMap[item.get('id')] = item
     return {
       type: CHANGE_ITEMS,
-      id: item.get('id'),
-      item: item
+      item: new Map(newMap)
     }
   }
 }

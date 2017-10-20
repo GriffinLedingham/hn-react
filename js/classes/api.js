@@ -1,5 +1,5 @@
 import stories from '../actions/stories'
-import store from './store'
+import store from '../store'
 
 const HOST = 'https://hacker-news.firebaseio.com'
 const toJSON = response => response.json();
@@ -19,8 +19,10 @@ let API = {
       store.dispatch(stories.changeStories(r))
       return r
     }).then((r)=>{
-      console.log(store.getState().get('stories'))
-      API.fetchItem(r[0])
+      for(let i=0;i<50;i++) {
+        let id = r[i]
+        API.fetchItem(id)
+      }
     })
   },
 

@@ -11,7 +11,7 @@ module.exports = {
     app: ['./js/main.js'],
   },
   output: {
-    filename: 'bundle.js',
+    filename: '/bundle.js',
     path: __dirname + '/build',
   },
   plugins: [
@@ -31,6 +31,7 @@ module.exports = {
     modulesDirectories: ['node_modules', './js'],
     extensions: ['', '.js', '.jsx', '.scss', '.sass', '.jade'],
     alias: {
+      'css': path.join(__dirname, 'css'),
       'vendor': path.join(__dirname, 'vendor'),
     },
   },
