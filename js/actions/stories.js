@@ -10,11 +10,11 @@ export default {
   },
 
   changeItem (item) {
-    let id = item.id
+    item = new Map(item)
     return {
       type: CHANGE_ITEMS,
-      id,
-      item: new Map(item)
+      id: item.get('id'),
+      item: item
     }
   }
 }

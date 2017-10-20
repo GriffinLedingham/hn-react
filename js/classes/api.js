@@ -11,13 +11,15 @@ let API = {
 
   _shouldFetchStory: (id)=>{
     let items = store.getState().get('items')
-    if(typeof items.toObject == 'undefined') return true
-    return (!store.getState().get('items').toObject().hasOwnProperty(id))
+    return (typeof store.getState().get('items').get(id.toString()) == 'undefined')
   },
 
   fetchTopStories: ()=>{
     return API._apiRequest ('/v0/topstories.json').then((r)=>{
       store.dispatch(stories.changeStories(r))
+      return r
+    }).then((r)=>{
+      console.log(store.getState().get('stories'))
       API.fetchItem(r[0])
     })
   },
@@ -28,7 +30,7 @@ let API = {
         store.dispatch(stories.changeItem(r))
       })
     } else {
-      return store.getState().get('items').toJSON()[id]
+      return store.getState().get('items').get(id.toString())
     }
   }
 }

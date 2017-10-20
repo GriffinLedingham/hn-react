@@ -10,9 +10,9 @@ if (defaultState) {
   defaultState = fromJS(JSON.parse(defaultState))
 } else {
   defaultState = new Map({
-    stories: {},
-    comments: {},
-    items: {}
+    stories: new List(),
+    comments: new Map(),
+    items: new Map()
   })
 }
 
@@ -25,7 +25,7 @@ export default function (state = defaultState, action) {
       break
     case CHANGE_ITEMS:
       alert(1)
-      newState = state.setIn(['items',action.id], action.item)
+      newState = state.set('items', state.get('items').set(action.id, action.item))
       break
     default:
       change = false

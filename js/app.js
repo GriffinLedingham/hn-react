@@ -13,11 +13,11 @@ class App extends React.Component {
     const { stories, comments, items } = this.props
     return (
       <div>
-        {stories && stories.toList && stories.toList().map(item => {
-          let richItem = items.get(item.toString())
-          if(typeof richItem != 'undefined'){
-            return (<div key={item}>{richItem.get('title')}</div>)
-          }
+        {stories && stories.map && stories.map((story) => {
+            let richItem = items.get(story.toString())
+            if(typeof richItem != 'undefined'){
+              return (<div key={story}>{richItem.get('title')}</div>)
+            }
         })}
       </div>
     )
