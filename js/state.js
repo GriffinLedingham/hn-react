@@ -21,7 +21,7 @@ export default function (state = defaultState, action) {
   let change = true
   switch (action.type) {
     case CHANGE_STORIES:
-      newState = state.set('stories', uniq(action.stories))
+      newState = state.mergeIn(['stories'], action.stories)
       break
     case CHANGE_ITEMS:
       alert(1)
