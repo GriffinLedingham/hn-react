@@ -66,7 +66,7 @@ class Item extends React.Component {
                 </span>
               </span>
               <div style={titleInnerWrapper}>
-                <a href={item && item.get('url')} target="_blank" style={titleStyle}>{item && item.get('title')}</a>
+                <a href={item && item.get('url')} style={titleStyle}>{item && item.get('title')}</a>
                 <span style={author}>
                   by {item && item.get('by')}
                 </span>
