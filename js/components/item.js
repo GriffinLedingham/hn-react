@@ -7,8 +7,46 @@ import Comment from './comment'
 
 import API from '../classes/api'
 
+const titleStyle = {
+  fontFamily: 'Verdana',
+  fontSize: '16px',
+  display:'inline-block',
+  verticalAlign: 'top',
+  marginBottom: '3px',
+  marginTop: '2px'
+}
+
+const scoreStyle = {
+  display:'inline-block',
+  fontSize: '20px',
+  textAlign: 'center',
+  verticalAlign: 'top'
+}
+
+const scoreSubStyle = {
+  display:'block',
+  fontSize:'10px'
+}
+
+const titleWrapper = {
+  marginTop:'30px',
+  marginBottom:'20px',
+  marginLeft: '20px'
+}
+
+const author = {
+  display:'block',
+  fontSize: '10px'
+}
+
+const titleInnerWrapper = {
+  display:'inline-block',
+  marginLeft:'20px',
+}
+
 class Item extends React.Component {
   componentDidMount () {
+    window.scrollTo(0, 0)
     API.fetchItem(this.props.match.params.id)
   }
 
@@ -19,7 +57,22 @@ class Item extends React.Component {
     return (
       <Header>
         <div key={`${id}_div`}>
-          {item && item.get('title')}
+          <div>
+            <div style={titleWrapper}>
+              <span style={scoreStyle}>
+                {item && item.get('score')}
+                <span style={scoreSubStyle}>
+                  pts.
+                </span>
+              </span>
+              <div style={titleInnerWrapper}>
+                <a href={item && item.get('url')} target="_blank" style={titleStyle}>{item && item.get('title')}</a>
+                <span style={author}>
+                  by {item && item.get('by')}
+                </span>
+              </div>
+            </div>
+          </div>
 
           {item && item.has('kids') && item.get('kids').map(kid => {
             return (

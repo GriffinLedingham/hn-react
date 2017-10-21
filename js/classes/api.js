@@ -19,8 +19,9 @@ let API = {
       store.dispatch(stories.changeStories(r))
       return r
     }).then((r)=>{
-      for(let i=0;i<50;i++) {
-        let id = r[i]
+      let s = r.slice(0,20)
+      for(let i=0;i<s.length;i++) {
+        let id = s[i]
         API.fetchItem(id)
       }
     })
